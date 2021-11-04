@@ -1,12 +1,6 @@
 const btn = document.getElementById("addMemberButton");
 const container = document.querySelector(".team-container");
-const nameUser = document.getElementById("name").value;
-const role = document.getElementById("role").value;
-const img = document.getElementById("image").value;
 
-console.log(nameUser);
-console.log(role);
-console.log(img);
 
 
 
@@ -73,24 +67,48 @@ for(let i in datiUtenti){
   `
 }
 
-btn.addEventListener("click", function(){
-  container.innerHTML +=
-  `
-  <div class="team-card">
-    <div class="card-image">
-      <img
-        src="${img}"
-        alt="Wayne Barnett"
-      />
-    </div>
-    <div class="card-text">
-      <h3>${nameUser}</h3>
-      <p>${role}</p>
-    </div>
-  </div>
-  `
-})
+btn.addEventListener('click', function(){
+  const newName = document.getElementById('name').value;
+  const newRole = document.getElementById('role').value;
+  const newImg = document.getElementById('image').value;
 
-function addCard (){
+  const newDatiUtenti = {
+      img: newImg,
+      name: newName,
+      role: newRole
+  };
 
+  datiUtenti.push(newDatiUtenti);
+
+  container.innerHTML = "";
+
+  insertDate(datiUtenti);
+});
+
+
+function insertDate(dati){
+  for(let indice in dati){
+    const newCard = dati[indice];
+  
+    const cardImg = newCard.img;
+    const cardName = newCard.name;
+    const cardJob = newCard.role;
+  
+    container.innerHTML +=
+  
+    `
+    <div class="team-card">
+      <div class="card-image">
+        <img
+          src="${cardImg}"
+          alt="Wayne Barnett"
+        />
+      </div>
+      <div class="card-text">
+        <h3>${cardName}</h3>
+        <p>${cardJob}</p>
+      </div>
+    </div>
+    ` 
+  }
 }
