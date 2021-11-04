@@ -1,9 +1,6 @@
 const btn = document.getElementById("addMemberButton");
 const container = document.querySelector(".team-container");
 
-
-
-
 const datiUtenti = [
   {
       img: 'img/wayne-barnett-founder-ceo.jpg',
@@ -40,31 +37,11 @@ const datiUtenti = [
       name: 'Barbara Ramos',
       role: 'Graphic Designer'
   }
-
 ]
 
 for(let i in datiUtenti){
-  const utente = datiUtenti[i];
-
-  const utenteImg = utente.img;
-  const utenteName = utente.name;
-  const utenteRole = utente.role;
-
-  container.innerHTML +=
-  `
-  <div class="team-card">
-    <div class="card-image">
-      <img
-        src="${utenteImg}"
-        alt="Wayne Barnett"
-      />
-    </div>
-    <div class="card-text">
-      <h3>${utenteName}</h3>
-      <p>${utenteRole}</p>
-    </div>
-  </div>
-  `
+  const oggettoUtente = datiUtenti[i];
+  datiUtente(oggettoUtente)
 }
 
 btn.addEventListener('click', function(){
@@ -78,21 +55,15 @@ btn.addEventListener('click', function(){
       role: newRole
   };
 
-  datiUtenti.push(newDatiUtenti);
-
-  container.innerHTML = "";
-
-  insertDate(datiUtenti);
+  datiUtente(newDatiUtenti);
 });
 
-
-function insertDate(dati){
-  for(let indice in dati){
-    const newCard = dati[indice];
+function datiUtente(oggetto){
+  const card = oggetto;
   
-    const cardImg = newCard.img;
-    const cardName = newCard.name;
-    const cardJob = newCard.role;
+    const cardImg = card.img;
+    const cardName = card.name;
+    const cardRole = card.role;
   
     container.innerHTML +=
   
@@ -106,9 +77,8 @@ function insertDate(dati){
       </div>
       <div class="card-text">
         <h3>${cardName}</h3>
-        <p>${cardJob}</p>
+        <p>${cardRole}</p>
       </div>
     </div>
     ` 
-  }
 }
